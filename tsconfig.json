@@ -1,15 +1,16 @@
 {
   "compilerOptions": {
-    "module": "ESNext",
     "moduleResolution": "node",
     "esModuleInterop": true,
     "allowJs": true,
-    "skipLibCheck": true,
     "target": "ESNext",
     "resolveJsonModule": true,
     "outDir": "./dist",
-    "baseUrl": "./src"
+    "rootDir": "./",
+    "baseUrl": "./",
+    "module": "ESNext",
+    "strict": true
   },
-  "include": ["src/**/*.ts", "app.ts"],
+  "include": ["src/**/*.ts", "server.ts"],
   "exclude": ["node_modules"]
 }
