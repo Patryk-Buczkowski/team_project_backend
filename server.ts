@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import dotenv from 'dotenv';
-import app from './app.ts';
+import app from './app';
 
 dotenv.config();
 
@@ -19,7 +19,11 @@ const startServer = async () => {
         `);
     });
   } catch (err) {
-    console.error(`Server not running. Error message: ${err.message}`);
+    if (err instanceof Error) {
+      console.error(`Server not running. Error message: ${err.message}`);
+    } else {
+      console.error('Server not running. Unknown error.');
+    }
     process.exit(1);
   }
 };

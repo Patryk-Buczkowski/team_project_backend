@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import passport from 'passport';
 import errorMiddleware from './middlewares/error.middleware';
+import authRouter from './routes/auth.router';
 
 const app = express();
 app.use(express.json());
@@ -19,8 +20,9 @@ const corseOptions = {
   optionsSuccessStatus: 200,
 };
 app.use(cors(corseOptions));
-app.use(express.json());
 app.use(passport.initialize());
+
+app.use(authRouter);
 app.use(errorMiddleware);
 
 export default app;
