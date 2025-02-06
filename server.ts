@@ -1,16 +1,19 @@
 /* eslint-disable no-console */
 import dotenv from 'dotenv';
 import app from './app';
+import sequelize from 'utils/db';
 
 dotenv.config();
 
 const PORT = process.env.PORT || 3000;
-// const uriDb = process.env.DB_URI || "";
-// const dbName = process.env.DB_NAME || "";
 
 const startServer = async () => {
   try {
-    // await , // connect to sql db
+    await sequelize.authenticate();
+    console.log('Database connection successful');
+
+    await sequelize.sync();
+    console.log('Database synchronized');
     console.log('Database connection successful');
     console.log('Indexes created for User model');
     app.listen(PORT, () => {
