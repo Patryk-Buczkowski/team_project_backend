@@ -15,7 +15,6 @@ export default defineConfig([
     linterOptions: {
       reportUnusedDisableDirectives: true,
     },
-    extends: ['plugin:@typescript-eslint/recommended', 'prettier'],
     plugins: {
       '@typescript-eslint': typescriptEslintPlugin,
       prettier: prettierPlugin,
