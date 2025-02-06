@@ -1,5 +1,5 @@
-import dotenv from "dotenv";
-import app from "./app.ts";
+import dotenv from 'dotenv';
+import app from './app.ts';
 
 dotenv.config();
 
@@ -10,8 +10,8 @@ const PORT = process.env.PORT || 3000;
 const startServer = async () => {
   try {
     // await , // connect to sql db
-    console.log("Database connection successful");
-    console.log("Indexes created for User model");
+    console.log('Database connection successful');
+    console.log('Indexes created for User model');
     app.listen(PORT, () => {
       console.log(`
         Server running port: ${PORT}

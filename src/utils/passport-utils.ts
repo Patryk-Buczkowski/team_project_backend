@@ -1,6 +1,6 @@
-import passport from "passport";
-import passportJWT from "passport-jwt";
-import dotenv from "dotenv";
+import passport from 'passport';
+import passportJWT from 'passport-jwt';
+import dotenv from 'dotenv';
 // import User from "../schemas/userSchema"; // User from db
 const User = h;
 
@@ -16,50 +16,50 @@ const params = {
 };
 
 passport.use(
-  "roleUser",
+  'roleUser',
   new Strategy(params, async (payload, done) => {
     try {
       const user = await User.findById(payload.id);
       if (!user) {
-        return done(null, false, { message: "Not authorized" });
+        return done(null, false, { message: 'Not authorized' });
       }
       return done(null, user);
     } catch (err) {
       return done(err);
     }
-  }),
+  })
 );
 
 passport.use(
-  "roleAdmin",
+  'roleAdmin',
   new Strategy(params, async (payload, done) => {
     try {
       const user = await User.findById(payload.id);
-      if (!user || user.role !== "admin") {
+      if (!user || user.role !== 'admin') {
         return done(null, false, {
-          message: "Not authorized role, admin required",
+          message: 'Not authorized role, admin required',
         });
       }
       return done(null, user);
     } catch (err) {
       return done(err);
     }
-  }),
+  })
 );
 
 passport.use(
-  "roleModerator",
+  'roleModerator',
   new Strategy(params, async (payload, done) => {
     try {
       const user = await User.findById(payload.id);
-      if (!user || !(user.role === "admin" || user.role === "moderator")) {
+      if (!user || !(user.role === 'admin' || user.role === 'moderator')) {
         return done(null, false, {
-          message: "Not authorized role, moderator or admin required",
+          message: 'Not authorized role, moderator or admin required',
         });
       }
       return done(null, user);
     } catch (err) {
       return done(err);
     }
-  }),
+  })
 );
