@@ -2,7 +2,8 @@ import passport from 'passport';
 import passportJWT from 'passport-jwt';
 import dotenv from 'dotenv';
 // import User from "../schemas/userSchema"; // User from db
-const User = h;
+import User from '../models/user.model';
+// const User = h;
 
 dotenv.config();
 
