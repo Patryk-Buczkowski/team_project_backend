@@ -4,13 +4,15 @@ import sequelize from '../utils/db';
 interface UserAttributes {
   id: number;
   name: string;
+  surname: string;
   email: string;
   password: string;
   role: 'user' | 'moderator' | 'admin';
   activationToken: string | null;
 }
 
-interface UserCreationAttributes extends Optional<UserAttributes, 'id'> {}
+export interface UserCreationAttributes
+  extends Optional<UserAttributes, 'id'> {}
 
 class User
   extends Model<UserAttributes, UserCreationAttributes>
@@ -18,6 +20,7 @@ class User
 {
   id!: number;
   name!: string;
+  surname!: string;
   email!: string;
   password!: string;
   role!: 'user' | 'moderator' | 'admin';
@@ -28,6 +31,7 @@ User.init(
   {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     name: { type: DataTypes.STRING, allowNull: false },
+    surname: { type: DataTypes.STRING, allowNull: false },
     email: { type: DataTypes.STRING, allowNull: false, unique: true },
     password: { type: DataTypes.STRING, allowNull: false },
     role: {
