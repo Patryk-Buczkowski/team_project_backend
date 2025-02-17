@@ -6,11 +6,14 @@
     "target": "ESNext",
     "resolveJsonModule": true,
     "outDir": "./dist",
+    "skipLibCheck": true,
     "rootDir": "./",
     "baseUrl": "./",
     "module": "ESNext",
-    "strict": true
+    "strict": true,
+    "forceConsistentCasingInFileNames": true
   },
   "include": ["src/**/*.ts", "server.ts"],
   "exclude": ["node_modules"]
 }
+
