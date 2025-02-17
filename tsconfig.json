@@ -1,15 +1,14 @@
 {
   "compilerOptions": {
     "typeRoots": ["./node_modules/@types", "./types"],
-   "types": [
-      "node", 
-      "express", 
-      "cors", 
-      "passport", 
-      "http-status-codes", 
-      "sequelize", 
-      "dotenv", 
-      "bcryptjs", 
+    "types": [
+      "node",
+      "express",
+      "cors",
+      "passport",
+      "sequelize",
+      "dotenv",
+      "bcryptjs",
       "uuid"
     ],
     "moduleResolution": "node",

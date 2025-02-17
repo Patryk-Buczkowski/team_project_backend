@@ -1,8 +1,8 @@
-import express from 'express';
-import cors from 'cors';
-import passport from 'passport';
-import errorMiddleware from './middlewares/error.middleware';
-import authRouter from './routes/auth.router';
+import express from "express";
+import cors from "cors";
+import passport from "passport";
+import errorMiddleware from "./middlewares/error.middleware";
+import authRouter from "./routes/auth.router";
 
 const app = express();
 app.use(express.json());
@@ -14,8 +14,8 @@ const corseOptions = {
   //   "http://localhost:5000",
   // ],
   origin: true, // for dev
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true,
   optionsSuccessStatus: 200,
 };
