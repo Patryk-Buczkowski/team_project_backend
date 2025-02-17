@@ -1,7 +1,6 @@
 {
   "compilerOptions": {
     "typeRoots": ["./node_modules/@types", "./types"],
-    "types": ["node", "bcryptjs", "body-parser", "connect"],
     "moduleResolution": "node",
     "esModuleInterop": true,
     "allowJs": true,
