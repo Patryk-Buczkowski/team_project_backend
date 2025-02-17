@@ -4,7 +4,7 @@
   "description": "team_project_backend",
   "type": "module",
   "engines": {
-    "node": ">=23.x"
+    "node": "23.8.0"
   },
   "scripts": {
     "start": "cross-env NODE_ENV=production npx tsx server.ts",
