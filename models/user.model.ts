@@ -1,5 +1,5 @@
-import { DataTypes, Model, Optional } from 'sequelize';
-import sequelize from '../utils/db';
+import { DataTypes, Model, Optional } from "sequelize";
+import sequelize from "../utils/db";
 
 interface UserAttributes {
   id: number;
@@ -7,12 +7,12 @@ interface UserAttributes {
   surname: string;
   email: string;
   password: string;
-  role: 'user' | 'moderator' | 'admin';
+  role: "user" | "moderator" | "admin";
   activationToken: string | null;
 }
 
 export interface UserCreationAttributes
-  extends Optional<UserAttributes, 'id'> {}
+  extends Optional<UserAttributes, "id"> {}
 
 class User
   extends Model<UserAttributes, UserCreationAttributes>
@@ -23,7 +23,7 @@ class User
   surname!: string;
   email!: string;
   password!: string;
-  role!: 'user' | 'moderator' | 'admin';
+  role!: "user" | "moderator" | "admin";
   activationToken!: string | null;
 }
 
@@ -35,17 +35,13 @@ User.init(
     email: { type: DataTypes.STRING, allowNull: false, unique: true },
     password: { type: DataTypes.STRING, allowNull: false },
     role: {
-      type: DataTypes.ENUM('user', 'moderator', 'admin'),
+      type: DataTypes.ENUM("user", "moderator", "admin"),
       allowNull: false,
-      defaultValue: 'user',
+      defaultValue: "user",
     },
     activationToken: { type: DataTypes.UUID, allowNull: true },
   },
-  {
-    sequelize,
-    modelName: 'User',
-    tableName: 'users',
-  },
+  { sequelize, modelName: "User", tableName: "users" },
 );
 
 export default User;
