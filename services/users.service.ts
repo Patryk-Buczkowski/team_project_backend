@@ -1,5 +1,5 @@
-import User from '../models/user.model';
-import { UserCreationAttributes } from '../models/user.model';
+import User from "../models/user.model";
+import { UserCreationAttributes } from "../models/user.model";
 
 const getByEmail = async (email: string) => {
   return User.findOne({ where: { email } });
