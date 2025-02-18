@@ -9,13 +9,13 @@ const PORT = process.env.PORT || 3000;
 
 const startServer = async () => {
   try {
-    // await sequelize.authenticate(); // baza musiałaby byc na serwerze zewnetrznym
+    await sequelize.authenticate(); // baza musiałaby byc na serwerze zewnetrznym
     console.log("Database connection successful");
 
-    // await sequelize.sync();
-    // console.log("Database synchronized");
-    // console.log("Database connection successful");
-    // console.log("Indexes created for User model");
+    await sequelize.sync();
+    console.log("Database synchronized");
+    console.log("Database connection successful");
+    console.log("Indexes created for User model");
     app.listen(PORT, () => {
       console.log(`
         Server running port: ${PORT}
