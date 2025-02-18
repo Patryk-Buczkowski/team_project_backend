@@ -17,6 +17,7 @@ const sequelize = new Sequelize({
       require: true,
       rejectUnauthorized: false,
     },
+    application_name: "team_project_backend",
   },
 });
 
