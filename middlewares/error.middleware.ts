@@ -12,13 +12,13 @@ const errorMiddleware: ErrorRequestHandler = (
 
     console.error("Handled API error:", error.message, error.errors);
 
-    res.status(status).send({ message, errors });
+    res.status(status).json({ message, errors });
     return;
   }
 
   console.error("Unhandled error:", error);
 
-  res.status(StatusCodes.INTERNAL_SERVER_ERROR).send({
+  res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
     message:
       error instanceof Error
         ? error.message

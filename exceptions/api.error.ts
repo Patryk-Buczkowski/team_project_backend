@@ -18,10 +18,10 @@ export class ApiError extends Error {
   }
 
   static Unauthorized(message?: string) {
-    return new ApiError(401, message || 'User is not authorized');
+    return new ApiError(401, message || "User is not authorized");
   }
 
   static NotFound() {
-    return new ApiError(404, 'Not found');
+    return new ApiError(404, "Not found");
   }
 }
