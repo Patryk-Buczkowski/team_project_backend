@@ -1,11 +1,12 @@
-import { ErrorRequestHandler, Request, Response } from "express";
+import { ErrorRequestHandler, NextFunction, Request, Response } from "express";
 import { ApiError } from "../exceptions/api.error";
 import { ReasonPhrases, StatusCodes } from "http-status-codes";
 
 const errorMiddleware: ErrorRequestHandler = (
   error: unknown,
-  req: Request,
+  _req: Request,
   res: Response,
+  _next: NextFunction,
 ) => {
   if (error instanceof ApiError) {
     const { status, message, errors } = error;
