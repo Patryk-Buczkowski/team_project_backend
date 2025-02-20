@@ -44,7 +44,7 @@ const registerUser = async (req: Request, res: Response) => {
 
   // TODO: send activation email
 
-  res.status(StatusCodes.CREATED).json(user);
+  res.status(200).json(user);
 };
 
 const loginUser = async (req: Request, res: Response) => {
