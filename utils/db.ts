@@ -8,17 +8,16 @@ const sequelize = new Sequelize({
   database: process.env.DB_NAME,
   username: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
-  // port: process.env.PORT || 5432,
   logging: false,
-  // lokalnie zakomentowane
+  // locally commented dialectOptions
 
-  dialectOptions: {
-    ssl: {
-      require: true,
-      rejectUnauthorized: false,
-    },
-    application_name: "team_project_backend",
-  },
+  // dialectOptions: {
+  //   ssl: {
+  //     require: true,
+  //     rejectUnauthorized: false,
+  //   },
+  //   application_name: "team_project_backend",
+  // },
 });
 
 export default sequelize;

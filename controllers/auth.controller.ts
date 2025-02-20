@@ -1,22 +1,22 @@
-import { ApiError } from 'exceptions/api.error';
-import { Request, Response } from 'express';
-import { StatusCodes } from 'http-status-codes';
-import { validateEmail, validatePassword } from '../utils/validation';
-import { usersService } from '../services/users.service';
-import { authService } from '../services/auth.service';
+import { ApiError } from "exceptions/api.error";
+import { Request, Response } from "express";
+import { StatusCodes } from "http-status-codes";
+import { validateEmail, validatePassword } from "../utils/validation";
+import { usersService } from "../services/users.service";
+import { authService } from "../services/auth.service";
 
 const registerUser = async (req: Request, res: Response) => {
   const { name, surname, email, password } = req.body;
 
   if (!name || !surname || !email || !password) {
-    throw ApiError.BadRequest('All fields are required', {});
+    throw ApiError.BadRequest("All fields are required", {});
   }
 
-  const emailError = validateEmail(email) || '';
-  const passwordError = validatePassword(password) || '';
+  const emailError = validateEmail(email) || "";
+  const passwordError = validatePassword(password) || "";
 
   if (emailError || passwordError) {
-    throw ApiError.BadRequest('Validation error', {
+    throw ApiError.BadRequest("Validation error", {
       email: emailError,
       password: passwordError,
     });
@@ -25,8 +25,8 @@ const registerUser = async (req: Request, res: Response) => {
   const userExists = await usersService.getByEmail(email);
 
   if (userExists) {
-    throw ApiError.BadRequest('User already exists', {
-      email: 'This e-mail address is used by another user.',
+    throw ApiError.BadRequest("User already exists", {
+      email: "This e-mail address is used by another user.",
     });
   }
 
@@ -38,13 +38,13 @@ const registerUser = async (req: Request, res: Response) => {
     surname,
     email,
     password: hashedPassword,
-    role: 'user',
+    role: "user",
     activationToken,
   });
 
   // TODO: send activation email
 
-  res.status(StatusCodes.CREATED).send(user);
+  res.status(StatusCodes.CREATED).json(user);
 };
 
 const loginUser = async (req: Request, res: Response) => {

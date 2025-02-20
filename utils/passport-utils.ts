@@ -1,14 +1,14 @@
-import passport from 'passport';
-import passportJWT from 'passport-jwt';
-import dotenv from 'dotenv';
-import User from '../models/user.model';
+import passport from "passport";
+import passportJWT from "passport-jwt";
+import dotenv from "dotenv";
+import User from "../models/user.model";
 
 dotenv.config();
 
 const secret = process.env.SECRET;
 
 if (!secret) {
-  throw new Error('SECRET environment variable is not defined');
+  throw new Error("SECRET environment variable is not defined");
 }
 
 const ExtractJWT = passportJWT.ExtractJwt;
@@ -16,7 +16,7 @@ const Strategy = passportJWT.Strategy;
 
 interface JwtPayload {
   id: string;
-  role: 'user' | 'admin' | 'moderator'; // Adjust roles as needed
+  role: "user" | "admin" | "moderator";
 }
 
 const params = {
@@ -25,12 +25,12 @@ const params = {
 };
 
 passport.use(
-  'roleUser',
+  "roleUser",
   new Strategy(params, async (payload: JwtPayload, done) => {
     try {
       const user = await User.findByPk(payload.id);
       if (!user) {
-        return done(null, false, { message: 'Not authorized' });
+        return done(null, false, { message: "Not authorized" });
       }
       return done(null, user);
     } catch (err) {
@@ -40,13 +40,13 @@ passport.use(
 );
 
 passport.use(
-  'roleAdmin',
+  "roleAdmin",
   new Strategy(params, async (payload, done) => {
     try {
       const user = await User.findByPk(payload.id);
-      if (!user || user.role !== 'admin') {
+      if (!user || user.role !== "admin") {
         return done(null, false, {
-          message: 'Not authorized role, admin required',
+          message: "Not authorized role, admin required",
         });
       }
       return done(null, user);
@@ -57,13 +57,13 @@ passport.use(
 );
 
 passport.use(
-  'roleModerator',
+  "roleModerator",
   new Strategy(params, async (payload, done) => {
     try {
       const user = await User.findByPk(payload.id);
-      if (!user || !(user.role === 'admin' || user.role === 'moderator')) {
+      if (!user || !(user.role === "admin" || user.role === "moderator")) {
         return done(null, false, {
-          message: 'Not authorized role, moderator or admin required',
+          message: "Not authorized role, moderator or admin required",
         });
       }
       return done(null, user);
