@@ -8,5 +8,6 @@ authRouter.post("/register", catchError(authController.registerUser));
 authRouter.post("/login", catchError(authController.loginUser));
 authRouter.post("/logout", catchError(authController.logoutUser));
 authRouter.get("/refresh", catchError(authController.refreshUser));
+authRouter.get("/get", authController.getUsers);
 
 export default authRouter;

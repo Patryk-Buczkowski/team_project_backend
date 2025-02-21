@@ -4,6 +4,7 @@ import { StatusCodes } from "http-status-codes";
 import { validateEmail, validatePassword } from "../utils/validation";
 import { usersService } from "../services/users.service";
 import { authService } from "../services/auth.service";
+import User from "models/user.model";
 
 const registerUser = async (req: Request, res: Response) => {
   const { name, surname, email, password } = req.body;
@@ -59,9 +60,20 @@ const refreshUser = async (req: Request, res: Response) => {
   res.send(StatusCodes.OK);
 };
 
+export const getUsers = async (req: Request, res: Response) => {
+  try {
+    const users = await User.findAll();
+    res.json(users);
+  } catch (error) {
+    console.error("Błąd pobierania użytkowników:", error);
+    res.status(500).json({ message: "Server Error" });
+  }
+};
+
 export const authController = {
   registerUser,
   loginUser,
+  getUsers,
   logoutUser,
   refreshUser,
 };
