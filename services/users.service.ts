@@ -14,7 +14,7 @@ const create = async (user: UserCreationAttributes) => {
 export const validateUser = async (email: string, password: string) => {
   const user = await User.findOne({ where: { email: { [Op.iLike]: email } } });
 
-  console.log("user.password", user?.password);
+  console.log("user.password", user);
 
   if (!user) {
     throw new Error("User not found");
