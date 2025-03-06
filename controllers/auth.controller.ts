@@ -103,10 +103,10 @@ export const getUsers = async (req: Request, res: Response) => {
   try {
     // const { email } = req.body;
     const users = await User.findAll();
-    const user = await User.findOne({
-      where: { email: { [Op.iLike]: "PATRYK.BUCZKOWSKI@OUTLOOK.COM" } },
-    });
-    res.json({ users, user });
+    // const user = await User.findOne({
+    //   where: { email: { [Op.iLike]: "PATRYK.BUCZKOWSKI@OUTLOOK.COM" } },
+    // });
+    res.json(users);
   } catch (error) {
     console.error("Błąd pobierania użytkowników:", error);
     res.status(500).json({ message: "Server Error" });
