@@ -11,13 +11,13 @@ const sequelize = new Sequelize({
   logging: false,
   // locally commented dialectOptions
 
-  dialectOptions: {
-    ssl: {
-      require: true,
-      rejectUnauthorized: false,
-    },
-    application_name: "team_project_backend",
-  },
+  // dialectOptions: {
+  //   ssl: {
+  //     require: true,
+  //     rejectUnauthorized: false,
+  //   },
+  //   application_name: "team_project_backend",
+  // },
 });
 
 export default sequelize;

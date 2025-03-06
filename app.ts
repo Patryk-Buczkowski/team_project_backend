@@ -3,9 +3,11 @@ import cors from "cors";
 import passport from "passport";
 import errorMiddleware from "./middlewares/error.middleware";
 import authRouter from "./routes/auth.router";
+import cookieParser from "cookie-parser";
 
 const app = express();
 app.use(express.json());
+app.use(cookieParser());
 
 const corseOptions = {
   // origin: [
