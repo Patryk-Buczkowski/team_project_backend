@@ -13,6 +13,8 @@ const create = async (user: UserCreationAttributes) => {
 export const validateUser = async (email: string, password: string) => {
   const user = await User.findOne({ where: { email } });
 
+  console.log("user.password", user?.password);
+
   if (!user) {
     throw new Error("User not found");
   }

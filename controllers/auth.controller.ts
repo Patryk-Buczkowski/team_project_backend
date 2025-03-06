@@ -9,7 +9,7 @@ import { authService } from "../services/auth.service";
 import jwt from "jsonwebtoken";
 import User from "models/user.model";
 import dotenv from "dotenv";
-import { Op } from "sequelize";
+// import { Op } from "sequelize";
 dotenv.config();
 
 const registerUser = async (req: Request, res: Response) => {
