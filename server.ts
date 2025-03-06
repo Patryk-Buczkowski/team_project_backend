@@ -18,6 +18,7 @@ const startServer = async () => {
     console.log("Database synchronized");
     console.log("Database connection successful");
     console.log("Indexes created for User model");
+
     app.listen(PORT, () => {
       console.log(`
         Server running port: ${PORT}
