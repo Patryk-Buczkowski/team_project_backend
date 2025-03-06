@@ -12,6 +12,7 @@ import dotenv from "dotenv";
 // import { Op } from "sequelize";
 dotenv.config();
 
+const { SECRET = "" } = process.env;
 const registerUser = async (req: Request, res: Response) => {
   const { name, surname, email, password } = req.body;
 
@@ -65,15 +66,9 @@ export const loginUser: RequestHandler = async (req, res, next) => {
       return;
     }
 
-    if (!process.env.SECRET) {
-      throw new Error("SECRET environment variable is not defined");
-    }
-
-    const token = jwt.sign(
-      { id: user.id, role: user.role },
-      process.env.SECRET,
-      { expiresIn: "1d" },
-    );
+    const token = jwt.sign({ id: user.id, role: user.role }, SECRET, {
+      expiresIn: "1d",
+    });
 
     res.cookie("token", token, {
       httpOnly: true,
