@@ -14,7 +14,7 @@ const create = async (user: UserCreationAttributes) => {
 export const validateUser = async (email: string, password: string) => {
   const user = await User.findOne({ where: { email: { [Op.iLike]: email } } });
 
-  console.log("user.password", user);
+  console.log("user.password", user?.dataValues.password);
 
   if (!user) {
     throw new Error("User not found");
@@ -24,7 +24,7 @@ export const validateUser = async (email: string, password: string) => {
   //   throw new Error("User is not verified");
   // }
 
-  const isMatch = await bcrypt.compare(password, user.password);
+  const isMatch = await bcrypt.compare(password, user.dataValues.password);
 
   if (!isMatch) {
     throw new Error("User password do not match");
