@@ -2,6 +2,7 @@ import passport from "passport";
 import passportJWT from "passport-jwt";
 import dotenv from "dotenv";
 import User from "../models/user.model";
+import { Request } from "express";
 
 dotenv.config();
 
@@ -11,17 +12,24 @@ if (!secret) {
   throw new Error("SECRET environment variable is not defined");
 }
 
-const ExtractJWT = passportJWT.ExtractJwt;
+// const ExtractJWT = passportJWT.ExtractJwt;
 const Strategy = passportJWT.Strategy;
 
 interface JwtPayload {
   id: string;
   role: "user" | "admin" | "moderator";
 }
+const extractCookie = (req: Request) => {
+  let token = null;
+  if (req && req.cookies) {
+    token = req.cookies.token;
+  }
+  return token;
+};
 
 const params = {
   secretOrKey: secret,
-  jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
+  jwtFromRequest: extractCookie,
 };
 
 passport.use(
