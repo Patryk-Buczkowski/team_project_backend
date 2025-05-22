@@ -111,6 +111,7 @@ const isUserLogged = async (req: Request, res: Response) => {
 
   if (!token) {
     res.status(401).json("User unauthorized");
+    return;
   }
 
   try {
