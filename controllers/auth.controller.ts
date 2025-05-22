@@ -74,7 +74,7 @@ export const loginUser: RequestHandler = async (req, res, next) => {
     res.cookie("token", token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
-      sameSite: "strict",
+      sameSite: "none",
       maxAge: 24 * 60 * 60 * 1000,
     });
 
@@ -95,13 +95,10 @@ const refreshUser = async (req: Request, res: Response) => {
   res.send(StatusCodes.OK);
 };
 
-export const getUsers = async (req: Request, res: Response) => {
+const getUsers = async (req: Request, res: Response) => {
   try {
-    // const { email } = req.body;
     const users = await User.findAll();
-    // const user = await User.findOne({
-    //   where: { email: { [Op.iLike]: "PATRYK.BUCZKOWSKI@OUTLOOK.COM" } },
-    // });
+
     res.json(users);
   } catch (error) {
     console.error("Błąd pobierania użytkowników:", error);
@@ -109,7 +106,23 @@ export const getUsers = async (req: Request, res: Response) => {
   }
 };
 
+const isUserLogged = async (req: Request, res: Response) => {
+  const token = req.cookies.token;
+
+  if (!token) {
+    res.status(401).json("User unauthorized");
+  }
+
+  try {
+    const user = jwt.verify(token, SECRET);
+    res.json({ user });
+  } catch (error) {
+    res.status(403).json({ error, message: "invalid token" });
+  }
+};
+
 export const authController = {
+  isUserLogged,
   registerUser,
   loginUser,
   getUsers,
