@@ -87,10 +87,6 @@ export const loginUser: RequestHandler = async (req, res, next) => {
   }
 };
 
-const logoutUser = async (req: Request, res: Response) => {
-  res.send(StatusCodes.OK);
-};
-
 const refreshUser = async (req: Request, res: Response) => {
   res.send(StatusCodes.OK);
 };
@@ -104,6 +100,16 @@ const getUsers = async (req: Request, res: Response) => {
     console.error("Błąd pobierania użytkowników:", error);
     res.status(500).json({ message: "Server Error" });
   }
+};
+
+const logOutUser = (req: Request, res: Response) => {
+  res.clearCookie("token", {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "none",
+  });
+
+  res.status(200).json({ message: "Logged out successfully" });
 };
 
 const isUserLogged = async (req: Request, res: Response) => {
@@ -124,9 +130,9 @@ const isUserLogged = async (req: Request, res: Response) => {
 
 export const authController = {
   isUserLogged,
+  logOutUser,
   registerUser,
   loginUser,
   getUsers,
-  logoutUser,
   refreshUser,
 };
