@@ -105,7 +105,7 @@ const getUsers = async (req: Request, res: Response) => {
 const logOutUser = (req: Request, res: Response) => {
   res.clearCookie("token", {
     httpOnly: true,
-    secure: true,
+    secure: process.env.NODE_ENV === "production",
     sameSite: "none",
   });
 
