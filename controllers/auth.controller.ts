@@ -109,6 +109,8 @@ const logOutUser = (req: Request, res: Response) => {
     sameSite: "none",
   });
 
+  console.log("token cleared");
+
   res.status(200).json({ message: "Logged out successfully" });
 };
 
